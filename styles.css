@@ -22,7 +22,8 @@ h1 {
     display: flex;
 }
 
-.button {
+.numberButton, .operator, .decimalButton,
+.equalButton, .clearButton {
     display: flex;
     justify-content: center;
     align-items: center;
