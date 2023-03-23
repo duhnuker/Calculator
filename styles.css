@@ -16,14 +16,16 @@ h1 {
     height: 50px;
     width: 200px;
     background: white;
+    color: black;
+    display: flex;
+    align-content: right;
 }
 
 .row {
     display: flex;
 }
 
-.numberButton, .operator, .decimalButton,
-.equalButton, .clearButton {
+button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,4 +33,12 @@ h1 {
     box-sizing: border-box;
     width: 50px;
     height: 50px;
+    background-color: black;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
 }
