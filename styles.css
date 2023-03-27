@@ -8,17 +8,22 @@ h1 {
     justify-content: center;
 }
 
-.container {
-    width: 500px;
+.container-background {
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
 }
 
 .input-display {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 30px;
     height: 50px;
     width: 200px;
     background: white;
     color: black;
-    display: flex;
-    align-content: right;
+    font-size: 24px;
 }
 
 .row {
