@@ -32,6 +32,10 @@ numbers.forEach((number) => number.addEventListener("click", function(e) {
 //this displayed textContent updates the currentValue variable
 
 function handleNumber(num) {
+    if(previousValue !== "" && currentValue !=="" && operator === "") {
+        previousValue = "";
+        displayCurrentValue.textContent = currentValue;
+    }
     if(currentValue.length <= 9) {
     currentValue += num;
     }
@@ -42,10 +46,31 @@ operators.forEach((op) => op.addEventListener("click", function(e) {
     displayCurrentValue.textContent = previousValue + " " + operator;
 }))
 
+// function handleOperator(op) {
+    // operator = op;
+    // previousValue = currentValue;
+    // currentValue = '';
+// }
+
 function handleOperator(op) {
-    operator = op;
-    previousValue = currentValue;
-    currentValue = '';
+    if (previousValue === "") {
+        previousValue = currentValue;
+        operatorCheck(op);
+    } else if (currentValue === "") {
+        operatorCheck(op);
+    } else {
+        calculate();
+        operator = op;
+        displayCurrentValue.textContent = "0";
+        displayCurrentValue.textContent = previousValue + "" + operator;
+    }
+}
+
+function operatorCheck(text) {
+    operator = text;
+    displayPreviousValue.textContent = previousValue + "" + operator;
+    displayCurrentValue.textContent = "0";
+    currentValue = "";
 }
 
 clear.addEventListener("click", function() {
@@ -75,6 +100,9 @@ function calculate() {
     } else if(operator === "÷") {
         previousValue /= currentValue;
     }
+    displayPreviousValue.textContent = "";
+    operator = "";
+    currentValue = "";
     Math.round(previousValue * 1000) / 1000;
     previousValue = previousValue.toString();
     currentValue = currentValue.toString();
