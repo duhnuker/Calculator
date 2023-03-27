@@ -35,9 +35,11 @@ function handleNumber(num) {
     if(previousValue !== "" && currentValue !=="" && operator === "") {
         previousValue = "";
         displayCurrentValue.textContent = currentValue;
+        //diplay update for multiple calculation
     }
     if(currentValue.length <= 9) {
     currentValue += num;
+    //ensuring user cannot enter values with digits greater than 10
     }
 }
 
@@ -45,12 +47,8 @@ operators.forEach((op) => op.addEventListener("click", function(e) {
     handleOperator(e.target.textContent)
     displayCurrentValue.textContent = previousValue + " " + operator;
 }))
+//event listener for user selecting an operation
 
-// function handleOperator(op) {
-    // operator = op;
-    // previousValue = currentValue;
-    // currentValue = '';
-// }
 
 function handleOperator(op) {
     if (previousValue === "") {
@@ -61,7 +59,6 @@ function handleOperator(op) {
     } else {
         calculate();
         operator = op;
-        displayCurrentValue.textContent = "0";
         displayCurrentValue.textContent = previousValue + "" + operator;
     }
 }
@@ -69,7 +66,6 @@ function handleOperator(op) {
 function operatorCheck(text) {
     operator = text;
     displayPreviousValue.textContent = previousValue + "" + operator;
-    displayCurrentValue.textContent = "0";
     currentValue = "";
 }
 
@@ -85,6 +81,7 @@ equal.addEventListener("click", function() {
     displayPreviousValue.textContent = '';
     displayCurrentValue.textContent = previousValue;
 })
+//calls calulate function to display final results
 
 function calculate() {
     previousValue = Number(previousValue);
@@ -100,12 +97,18 @@ function calculate() {
     } else if(operator === "÷") {
         previousValue /= currentValue;
     }
+    if(currentValue <= 0) {
+        previousValue = "Error";
+        return;
+    //error display if value less than 0
+    }
+    Math.round(previousValue * 1000) / 1000;
     displayPreviousValue.textContent = "";
     operator = "";
     currentValue = "";
-    Math.round(previousValue * 1000) / 1000;
     previousValue = previousValue.toString();
     currentValue = currentValue.toString();
+    //round final calculation then converts back to string
 }
 
 decimal.addEventListener("click", function() {
