@@ -80,4 +80,15 @@ function calculate() {
     currentValue = currentValue.toString();
 }
 
+decimal.addEventListener("click", function() {
+    addDecimal();
+})
+
+function addDecimal() {
+    if(!currentValue.includes(".")) {
+        currentValue += '.';
+        displayCurrentValue.textContent = currentValue;
+    }
+}
+
 
